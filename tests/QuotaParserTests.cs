@@ -128,12 +128,20 @@ internal static class QuotaParserTests
 
     private static void PlanMultiplierFormatting()
     {
+        Assert(PlanDisplayFormatter.Format("FREE") == "Free",
+            "Free must use the official user-facing plan name.");
+        Assert(PlanDisplayFormatter.Format("go") == "Go",
+            "Go must use the official user-facing plan name.");
+        Assert(PlanDisplayFormatter.Format("plus") == "Plus",
+            "Plus must use the official user-facing plan name.");
         Assert(PlanDisplayFormatter.Format("prolite") == "Pro 5×",
             "Pro Lite must be displayed as the Pro 5x tier.");
         Assert(PlanDisplayFormatter.Format("PRO") == "Pro 20×",
             "Pro must be displayed as the Pro 20x tier.");
-        Assert(PlanDisplayFormatter.Format("plus") == "PLUS",
+        Assert(PlanDisplayFormatter.Format("business") == "BUSINESS",
             "Other plan types must preserve the existing fallback formatting.");
+        Assert(PlanDisplayFormatter.Format("unknown") == "未知",
+            "An explicitly unknown plan type must use the localized fallback.");
         Assert(PlanDisplayFormatter.Format(null) == "未知",
             "A missing plan type must remain unknown.");
     }

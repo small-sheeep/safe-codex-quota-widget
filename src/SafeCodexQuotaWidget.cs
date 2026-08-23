@@ -701,6 +701,10 @@ namespace SafeCodexQuotaWidget
         public static string Format(string planType)
         {
             if (string.IsNullOrWhiteSpace(planType)) return "未知";
+            if (string.Equals(planType, "unknown", StringComparison.OrdinalIgnoreCase)) return "未知";
+            if (string.Equals(planType, "free", StringComparison.OrdinalIgnoreCase)) return "Free";
+            if (string.Equals(planType, "go", StringComparison.OrdinalIgnoreCase)) return "Go";
+            if (string.Equals(planType, "plus", StringComparison.OrdinalIgnoreCase)) return "Plus";
             if (string.Equals(planType, "prolite", StringComparison.OrdinalIgnoreCase)) return "Pro 5×";
             if (string.Equals(planType, "pro", StringComparison.OrdinalIgnoreCase)) return "Pro 20×";
             return planType.ToUpperInvariant();
